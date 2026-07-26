@@ -1,0 +1,335 @@
+<!--
+==============================================================================
+Maven Project Root
+
+Purpose:
+1. <project>          : Root element of every Maven project.
+2. xmlns              : Declares that this file follows Maven POM syntax.
+3. xmlns:xsi          : Enables XML Schema (XSD) support.
+4. xsi:schemaLocation : Points to Maven's official XSD (rule book) so
+                        Eclipse/IntelliJ can validate this pom.xml.
+
+Note:
+This is standard Maven boilerplate and usually never changes.
+==============================================================================
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- ==========================================================
+         Maven POM Model Version
+         ========================================================== -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ==========================================================
+         Project Information
+         ========================================================== -->
+
+	<!-- Organization / Company Name -->
+	<groupId>AutomationFramework</groupId>
+
+	<!-- Project Name -->
+	<artifactId>AutomationFramework</artifactId>
+
+	<!-- Current Project Version -->
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Display Name -->
+	<name>AutomationFramework</name>
+
+
+	<!-- ==========================================================
+         Common Properties
+
+         Purpose:
+         - Store common values at one place.
+         - Easy dependency version upgrade.
+         - Avoid repeating version numbers.
+         ========================================================== -->
+
+	<properties>
+
+		<!-- Java Version used to compile the project -->
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+
+		<!-- Selenium Version -->
+		<selenium.version>4.22.0</selenium.version>
+
+		<!-- Cucumber Version -->
+		<cucumber.version>7.18.1</cucumber.version>
+
+		<!-- TestNG Version -->
+		<testng.version>7.10.2</testng.version>
+
+		<!-- WebDriverManager Version -->
+		<webdrivermanager.version>5.8.0</webdrivermanager.version>
+
+	</properties>
+
+
+	<!-- ==========================================================
+         Project Dependencies
+
+         Purpose:
+         External libraries required by our framework.
+         ========================================================== -->
+
+	<dependencies>
+
+		<!-- ======================================================
+             Selenium
+
+             Purpose:
+             Browser Automation Library.
+             ====================================================== -->
+		<dependency>
+
+			<groupId>org.seleniumhq.selenium</groupId>
+
+			<artifactId>selenium-java</artifactId>
+
+			<version>4.22.0</version>
+
+		</dependency>
+       
+       <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.4.1</version>
+</dependency>
+
+		<!-- ======================================================
+             WebDriverManager
+
+             Purpose:
+             Automatically downloads and manages browser drivers.
+             No need to manually maintain chromedriver.exe.
+             ====================================================== -->
+		<dependency>
+
+			<groupId>io.github.bonigarcia</groupId>
+
+			<artifactId>webdrivermanager</artifactId>
+
+			<version>${webdrivermanager.version}</version>
+
+		</dependency>
+
+
+		<!-- ======================================================
+             TestNG
+
+             Purpose:
+             Test Execution Framework.
+             Cucumber scenarios will execute through TestNG.
+             ====================================================== -->
+		<dependency>
+
+			<groupId>org.testng</groupId>
+
+			<artifactId>testng</artifactId>
+
+			<version>${testng.version}</version>
+
+		</dependency>
+
+
+		<!-- ======================================================
+             Cucumber Java
+
+             Purpose:
+             Supports
+
+             • Feature Files
+             • Step Definitions
+             • Given
+             • When
+             • Then
+
+             ====================================================== -->
+		<dependency>
+
+			<groupId>io.cucumber</groupId>
+
+			<artifactId>cucumber-java</artifactId>
+
+			<version>${cucumber.version}</version>
+
+		</dependency>
+
+
+		<!-- ======================================================
+             Cucumber TestNG
+
+             Purpose:
+             Integrates Cucumber with TestNG.
+             ====================================================== -->
+		<dependency>
+
+			<groupId>io.cucumber</groupId>
+
+			<artifactId>cucumber-testng</artifactId>
+
+			<version>${cucumber.version}</version>
+
+		</dependency>
+
+		<!-- ========================================================= -->
+		<!-- Logging Framework : SLF4J + Log4j2                        -->
+		<!--                                                           -->
+		<!-- Purpose:                                                  -->
+		<!-- 1. Record framework execution steps.                      -->
+		<!-- 2. Help QA understand execution flow.                     -->
+		<!-- 3. Assist developers during debugging.                    -->
+		<!-- 4. Generate logs for Jenkins and CI/CD pipelines.         -->
+		<!-- 5. Provide logs for future reporting frameworks.          -->
+		<!-- ========================================================= -->
+
+		<!-- Log4j2 API -->
+		<!--
+     Purpose:
+     - Provides Log4j logging interfaces.
+     - Contains Logger classes used by the framework.
+     - Does NOT generate logs by itself.
+-->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.23.1</version>
+		</dependency>
+
+		<!-- Log4j2 Core -->
+		<!--
+     Purpose:
+     - Actual logging engine.
+     - Responsible for writing logs.
+     - Prints logs to Console.
+     - Creates log files.
+     - Reads log4j2.xml configuration.
+-->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.23.1</version>
+		</dependency>
+
+		<!-- SLF4J to Log4j2 Bridge -->
+		<!--
+     Purpose:
+     - Connects SLF4J logging API with Log4j2 implementation.
+     - Allows framework code to use SLF4J Logger.
+     - Internally redirects all logging requests to Log4j2.
+-->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j2-impl</artifactId>
+			<version>2.23.1</version>
+		</dependency>
+
+		<!-- SLF4J API -->
+		<!--
+     Purpose:
+     - Standard logging API used inside the framework.
+     - Provides Logger and LoggerFactory classes.
+     - Framework classes communicate only with SLF4J.
+     - Does NOT write logs directly.
+-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.13</version>
+		</dependency>
+		
+		<!-- Extent Reports - Generates interactive HTML execution reports -->
+		<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.1.2</version>
+</dependency>
+
+
+	</dependencies>
+
+
+	<!-- ==========================================================
+         Build Configuration
+
+         Purpose:
+         Configure Maven build process.
+         ========================================================== -->
+
+	<build>
+
+		<plugins>
+
+			<!-- ==================================================
+                 Maven Compiler Plugin
+
+                 Purpose:
+                 Compile project using Java 17.
+                 ================================================== -->
+
+			<plugin>
+
+				<groupId>org.apache.maven.plugins</groupId>
+
+				<artifactId>maven-compiler-plugin</artifactId>
+
+				<version>3.11.0</version>
+
+				<configuration>
+
+					<source>17</source>
+
+					<target>17</target>
+
+				</configuration>
+
+			</plugin>
+
+
+			<!-- ==================================================
+                 Maven Surefire Plugin
+
+                 Purpose:
+                 Executes TestNG suite during
+
+                     mvn test
+
+                 Reads
+
+                     testng.xml
+
+                 and starts TestNG execution.
+
+                 This plugin is also used by
+
+                 • Jenkins
+                 • GitHub Actions
+                 • Azure DevOps
+
+                 ================================================== -->
+
+			<plugin>
+
+				<groupId>org.apache.maven.plugins</groupId>
+
+				<artifactId>maven-surefire-plugin</artifactId>
+
+				<version>3.2.5</version>
+
+				<configuration>
+
+					
+
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

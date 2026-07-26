@@ -1,0 +1,111 @@
+                 TestRunner
+                      │
+                      ▼
+                login.feature
+                      │
+                      ▼
+                LoginSteps.java
+               /               \
+              ▼                 ▼
+        LoginPage          HomePage
+              \               /
+               ▼             ▼
+                 BasePage
+                     │
+                     ▼
+                WaitUtility
+                     │
+                     ▼
+                 WebDriver
+                     ▲
+                     │
+               DriverFactory
+                     ▲
+                     │
+               ConfigReader
+                     ▲
+                     │
+            config.properties
+            
+            
+            
+                                        USER
+                                         │
+                                         ▼
+                           Run As → TestNG Test
+                                         │
+                                         ▼
+                             TestRunner.java
+                                         │
+                                         ▼
+                        @CucumberOptions is read
+             ┌───────────────────────────────────────────┐
+             │ Features Location                         │
+             │ Glue Packages                             │
+             │ Plugins                                   │
+             │ dryRun                                    │
+             └───────────────────────────────────────────┘
+                                         │
+                                         ▼
+                 Cucumber reads login.feature
+                                         │
+                                         ▼
+                    Finds Scenario Outline
+                                         │
+                                         ▼
+                    Reads Examples Table
+                                         │
+                                         ▼
+          Creates one Scenario for each data row
+                                         │
+                                         ▼
+                             @Before Hook
+                                 Hooks.java
+                                         │
+                                         ▼
+                   DriverFactory.initializeDriver()
+                                         │
+                                         ▼
+                          ConfigReader loads
+                          config.properties
+                                         │
+                                         ▼
+                    Reads browser=chrome
+                                         │
+                                         ▼
+                   Creates ChromeDriver
+                                         │
+                                         ▼
+                  Driver stored in ThreadLocal
+                                         │
+                                         ▼
+                 First Gherkin Step starts
+                 
+                 
+                 
+                 
+                 
+                 
+    | Component         | Responsibility                                                                                |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| **SLF4J API**     | Provides a standard logging interface (`Logger`, `LoggerFactory`) used by our framework code. |
+| **Log4j2 Bridge** | Connects SLF4J logging calls to the Log4j2 implementation.                                    |
+| **Log4j2 API**    | Defines Log4j logging interfaces and classes.                                                 |
+| **Log4j2 Core**   | Executes the logging, prints to console, writes log files, and processes `log4j2.xml`.        |
+Every class should have its own logger.Immediately you know where the execution is.                 
+                 
+                 
+Framework Logging
+
+✅ DriverFactory
+
+✅ Hooks
+
+✅ BasePage
+
+⬜ WaitUtility
+
+⬜ LoginPage
+
+⬜ DashboardPage                 
+                 

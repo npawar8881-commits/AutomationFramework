@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 2. Define log output format.                                              -->
+<!-- 3. Print logs to Console.                                                 -->
+<!-- 4. Store logs inside log files.                                           -->
+
+<Configuration status="WARN">
+
+	<Appenders>
+
+		<!-- Displays framework execution logs in Eclipse/IntelliJ Console.  -->
+
+		<Console name="Console" target="SYSTEM_OUT">
+           <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %c{1} - %msg%n" />
+		</Console>
+
+		<!-- File Appender                                                   -->
+		<!-- Stores complete execution logs in logs/framework.log            -->
+		<!-- Creates log file automatically if it doesn't exist.             -->
+		
+		<File name="FileLogger" fileName="logs/framework.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %c{1} - %msg%n" />
+		</File>
+
+	</Appenders>
+
+
+	<Loggers>
+		<!-- Suppress TestNG logs -->
+		<Logger name="org.testng" level="off" additivity="false" />
+
+		<!-- Suppress TestNG Utils logs -->
+		<Logger name="org.testng.internal.Utils" level="off" additivity="false" />
+
+		<!-- Suppress WebDriverManager logs -->
+		<Logger name="io.github.bonigarcia.wdm" level="off" additivity="false" />
+
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="FileLogger" />
+		</Root>
+
+	</Loggers>
+
+</Configuration>

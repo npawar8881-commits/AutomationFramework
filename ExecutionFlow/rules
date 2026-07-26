@@ -1,0 +1,17 @@
+
+Going forward, I'll follow these rules for our framework:
+
+Never suggest code without first checking our existing implementation.
+Never duplicate responsibilities between classes.
+Stay consistent with the design decisions we've already finalized.
+If I'm unsure whether we've already implemented something, I'll ask instead of assuming.
+Always use our developing framework as the reference before suggesting any enhancement, new class, package, folder, or code change.
+I should have first recalled our current framework:Then I would have concluded:No enhancement required. Navigation already exists.
+Going forward I'll consider our framework as the single source of truth.not on a generic Selenium framework.This will keep the framework consistent from start to finish.
+
+From now on, whenever I modify an existing class, I'll first state:Current implementation,New requirement,Exactly what changes,Why the change is necessary
+That way, every enhancement is traceable and consistent with the framework we've built
+
+Always keep our existing framework as the reference. Never invent methods or regenerate classes from memory.
+
+
